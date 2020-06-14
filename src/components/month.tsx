@@ -16,7 +16,7 @@ const Month: FC = () => {
   const weekArray = Array.from(new Array(weekLines)).map((v,i) => i)
   let weekTable = new Array(7 * weekLines);
 
-  for(let i=0; i < 7 * weekLines; i++) weekTable[i]="　";
+  for(let i=0; i < 7 * weekLines; i++) weekTable[i]="";
   for(let i=0; i < monthTable[nowMonth]; i++) weekTable[i + nowWeek] = i+1;
 
   return (

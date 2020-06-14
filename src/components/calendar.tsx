@@ -1,19 +1,34 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+import DayOfWeek from "./dayOfWeek";
 import Month from "./month";
 
-const Calendar: FC<{}> = () => {
-  const weeks: string[] = ['日', '月', '火', '水', '木', '金', '土'];
-  
+const Calendar: FC<{}> = () => {  
+  const nowDate: Date = new Date();
+  const [year, setYear] = useState<number>(nowDate.getFullYear());
+  const [month, setMonth] = useState<number>(nowDate.getMonth());
+
+  const prev = () => {
+    setMonth(month - 1);
+    if (month === 0) {
+      setYear(year - 1);
+      setMonth(11);
+    }
+  }
+
+  const next = () => {
+    setMonth(month + 1);
+    if (month === 11) {
+      setYear(year + 1);
+      setMonth(0);
+    }
+  }
+
   return (
     <div className="calendar">
-      2020年 6月
-      <div className="weeks">
-        <ul>
-          {weeks.map((week, index) => (
-            <li key={index}>{week}</li>
-          ))}
-        </ul>
-      </div>
+      <span className="prev" onClick={prev}>◀︎</span>
+      {year}年 {month+1}月
+      <span className="next" onClick={next}>▶︎</span>
+      <DayOfWeek/>
       <Month/>
     </div>
   );

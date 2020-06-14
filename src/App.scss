@@ -45,6 +45,12 @@
   border: black 1px solid;
   text-align: center;
   font-weight: bold;
+  .prev {
+    cursor: pointer;
+  }
+  .next {
+    cursor: pointer;
+  }
   .weeks {
     ul {
       padding: inherit;
