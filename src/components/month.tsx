@@ -1,7 +1,12 @@
 import React, { FC } from "react";
 
-const Month: FC = () => {
-  let nowDate = new Date();
+interface Props {
+  nowDate: Date
+}
+
+const Month: FC<Props> = (props) => {
+  const nowDate = props.nowDate;
+
   const monthTable = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const nowYear = nowDate.getFullYear();
 

@@ -3,7 +3,7 @@ import DayOfWeek from "./dayOfWeek";
 import Month from "./month";
 
 const Calendar: FC<{}> = () => {  
-  const nowDate: Date = new Date();
+  const [nowDate, setNowDate] = useState<Date>(new Date());
   const [year, setYear] = useState<number>(nowDate.getFullYear());
   const [month, setMonth] = useState<number>(nowDate.getMonth());
 
@@ -13,6 +13,7 @@ const Calendar: FC<{}> = () => {
       setYear(year - 1);
       setMonth(11);
     }
+    setNowDate(new Date(year, month - 1, 1));
   }
 
   const next = () => {
@@ -21,6 +22,7 @@ const Calendar: FC<{}> = () => {
       setYear(year + 1);
       setMonth(0);
     }
+    setNowDate(new Date(year, month + 1, 1));
   }
 
   return (
@@ -29,7 +31,7 @@ const Calendar: FC<{}> = () => {
       {year}年 {month+1}月
       <span className="next" onClick={next}>▶︎</span>
       <DayOfWeek/>
-      <Month/>
+      <Month nowDate={nowDate}/>
     </div>
   );
 };
